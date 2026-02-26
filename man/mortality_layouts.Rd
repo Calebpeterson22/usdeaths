@@ -12,6 +12,13 @@
 \alias{data_multiple_mortality_2021}
 \alias{data_multiple_mortality_2022}
 \alias{data_multiple_mortality_2024}
+\alias{data_multiple_mortality_2003}
+\alias{data_multiple_mortality_2004}
+\alias{data_multiple_mortality_2005}
+\alias{data_multiple_mortality_2006}
+\alias{data_multiple_mortality_2007}
+\alias{data_multiple_mortality_2008}
+\alias{data_multiple_mortality_2009}
 \title{Mortality multiple cause data layouts}
 \format{
 A tibble with 7 variables:
@@ -42,6 +49,19 @@ An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) w
 An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 91 rows and 7 columns.
 
 An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 91 rows and 7 columns.
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 107 rows and 7 columns.
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 107 rows and 7 columns.
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 88 rows and 7 columns.
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 88 rows and 7 columns.
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 88 rows and 7 columns.
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 88 rows and 7 columns.
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 88 rows and 7 columns.
 }
 \source{
 \url{https://ftp.cdc.gov/pub/Health_Statistics/NCHS/Datasets/DVS/mortality/}
@@ -64,6 +84,19 @@ data_multiple_mortality_2021
 data_multiple_mortality_2022
 
 data_multiple_mortality_2024
+data_multiple_mortality_2003
+
+data_multiple_mortality_2004
+
+data_multiple_mortality_2005
+
+data_multiple_mortality_2006
+
+data_multiple_mortality_2007
+
+data_multiple_mortality_2008
+
+data_multiple_mortality_2009
 }
 \description{
 Metadata tables describing the fixed-width file layout for US mortality
