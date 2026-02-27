@@ -1,4 +1,4 @@
-library(tidyverse)
+library(dplyr)
 
 all_metas <- data(package = "usdeaths")$results[, "Item"]
 all_metas <- all_metas[grepl("^data_mortality_multiple_", all_metas)]

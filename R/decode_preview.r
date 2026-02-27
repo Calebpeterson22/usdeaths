@@ -48,6 +48,7 @@
 #' mort1969_decoded <- decode_preview(mort1969, meta, all = TRUE, n_rows = nrow(mort1969))
 #' }
 #'
+#' @importFrom dplyr mutate across all_of slice_head cur_column select
 #' @export
 decode_preview <- function(data, meta, first_n = 5, numbers = NULL, n_rows = 1000, all = FALSE) {
     if (all) {
