@@ -3,7 +3,17 @@
 \docType{data}
 \name{mortality_layouts}
 \alias{mortality_layouts}
+\alias{data_mortality_multiple_1968}
 \alias{data_mortality_multiple_1969}
+\alias{data_mortality_multiple_1970}
+\alias{data_mortality_multiple_1971}
+\alias{data_mortality_multiple_1972}
+\alias{data_mortality_multiple_1973}
+\alias{data_mortality_multiple_1974}
+\alias{data_mortality_multiple_1975}
+\alias{data_mortality_multiple_1976}
+\alias{data_mortality_multiple_1977}
+\alias{data_mortality_multiple_1978}
 \alias{data_mortality_multiple_1979}
 \alias{data_mortality_multiple_1980}
 \alias{data_mortality_multiple_1981}
@@ -33,6 +43,26 @@ A tibble with 7 variables:
 \item{description}{Human-readable field description}
 \item{codes}{Pipe-delimited key=label pairs for coded fields, empty string if none}
 }
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 43 rows and 7 columns.
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 43 rows and 7 columns.
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 43 rows and 7 columns.
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 43 rows and 7 columns.
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 43 rows and 7 columns.
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 43 rows and 7 columns.
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 43 rows and 7 columns.
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 43 rows and 7 columns.
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 43 rows and 7 columns.
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 43 rows and 7 columns.
 
 An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 43 rows and 7 columns.
 
@@ -74,7 +104,27 @@ An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) w
 \url{https://ftp.cdc.gov/pub/Health_Statistics/NCHS/Datasets/DVS/mortality/}
 }
 \usage{
+data_mortality_multiple_1968
+
 data_mortality_multiple_1969
+
+data_mortality_multiple_1970
+
+data_mortality_multiple_1971
+
+data_mortality_multiple_1972
+
+data_mortality_multiple_1973
+
+data_mortality_multiple_1974
+
+data_mortality_multiple_1975
+
+data_mortality_multiple_1976
+
+data_mortality_multiple_1977
+
+data_mortality_multiple_1978
 
 data_mortality_multiple_1979
 
@@ -118,6 +168,8 @@ the corresponding fixed-width file.
 }
 \note{
 This is an early year with limited coding — several fields left blank.
+
+1968-1978 all use the same user guide. We only make data_mortality_multiple_1969 because its a funny number.
 
 Geographic identifiers are present: positions 21–60 contain state,
 county, and city of both occurrence and residence, PMSA/MSA, CMSA, and

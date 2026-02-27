@@ -6,7 +6,7 @@
 #' @export
 load_data <- function(path, meta) {
   tempd <- tempdir()
-  tempdf <- paste0(tempd, "/folder")
+  tempdf <- tempfile(tmpdir = tempd)
   dir.create(tempdf, showWarnings = FALSE)
   unzip(path, exdir = tempdf)
   fpath_name <- list.files(tempdf, full.names = TRUE)[1]

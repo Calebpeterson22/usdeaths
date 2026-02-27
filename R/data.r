@@ -41,9 +41,41 @@
 #' @name mortality_layouts
 NULL
 
+
+#' @rdname mortality_layouts
+"data_mortality_multiple_1968"
+
 #' @rdname mortality_layouts
 #' @note This is an early year with limited coding — several fields left blank.
+#' @note 1968-1978 all use the same user guide. We only make data_mortality_multiple_1969 because its a funny number.
 "data_mortality_multiple_1969"
+
+#' @rdname mortality_layouts
+"data_mortality_multiple_1970"
+
+#' @rdname mortality_layouts
+"data_mortality_multiple_1971"
+
+#' @rdname mortality_layouts
+"data_mortality_multiple_1972"
+
+#' @rdname mortality_layouts
+"data_mortality_multiple_1973"
+
+#' @rdname mortality_layouts
+"data_mortality_multiple_1974"
+
+#' @rdname mortality_layouts
+"data_mortality_multiple_1975"
+
+#' @rdname mortality_layouts
+"data_mortality_multiple_1976"
+
+#' @rdname mortality_layouts
+"data_mortality_multiple_1977"
+
+#' @rdname mortality_layouts
+"data_mortality_multiple_1978"
 
 #' @rdname mortality_layouts
 "data_mortality_multiple_1979"
