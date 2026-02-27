@@ -25,6 +25,16 @@
       <ul class="nav navbar-nav"><li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Articles
+
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu"><li>
+      <a href="../articles/getting-started.html">Getting Started with usdeaths</a>
+    </li>
+  </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"></ul></div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -50,6 +60,10 @@
         </td>
         <td><p>Build CDC Vital Statistics Link Lookup Table</p></td>
       </tr><tr><td>
+          <p><code><a href="build_test_data.html">build_test_data()</a></code> </p>
+        </td>
+        <td><p>sample function to get a potential test dataset</p></td>
+      </tr><tr><td>
           <p><code><a href="cdc_link_lookup.html">cdc_link_lookup</a></code> </p>
         </td>
         <td><p>CDC Vital Statistics Link Lookup Table</p></td>
@@ -58,13 +72,37 @@
         </td>
         <td><p>Clean and Reshape All CDC Vital Statistics Sections</p></td>
       </tr><tr><td>
+          <p><code><a href="decode_column.html">decode_column()</a></code> </p>
+        </td>
+        <td><p>Decode a coded column using a pipe-delimited key=label string</p></td>
+      </tr><tr><td>
+          <p><code><a href="decode_preview.html">decode_preview()</a></code> </p>
+        </td>
+        <td><p>Preview decoded columns from a mortality dataset</p></td>
+      </tr><tr><td>
+          <p><code><a href="download_cdc.html">download_cdc()</a></code> </p>
+        </td>
+        <td><p>download cdc data object</p></td>
+      </tr><tr><td>
           <p><code><a href="get_html_page.html">get_html_page()</a></code> </p>
         </td>
         <td><p>Get an HTML page from a URL</p></td>
       </tr><tr><td>
+          <p><code><a href="load_data.html">load_data()</a></code> </p>
+        </td>
+        <td><p>read fixed width downloaded data</p></td>
+      </tr><tr><td>
+          <p><code><a href="mortality_layouts.html">data_multiple_mortality_1969</a></code> <code><a href="mortality_layouts.html">data_multiple_mortality_2023</a></code> <code><a href="mortality_layouts.html">data_multiple_mortality_2003</a></code> <code><a href="mortality_layouts.html">data_multiple_mortality_2004</a></code> <code><a href="mortality_layouts.html">data_multiple_mortality_2005</a></code> <code><a href="mortality_layouts.html">data_multiple_mortality_2006</a></code> <code><a href="mortality_layouts.html">data_multiple_mortality_2007</a></code> <code><a href="mortality_layouts.html">data_multiple_mortality_2008</a></code> <code><a href="mortality_layouts.html">data_multiple_mortality_2009</a></code> </p>
+        </td>
+        <td><p>Mortality multiple cause data layouts</p></td>
+      </tr><tr><td>
           <p><code><a href="parse_file_size_mb.html">parse_file_size_mb()</a></code> </p>
         </td>
         <td><p>Convert file size strings to megabytes</p></td>
+      </tr><tr><td>
+          <p><code><a href="read_section.html">read_section()</a></code> </p>
+        </td>
+        <td><p>Read a CDC vital statistics fixed-width file using a metadata table</p></td>
       </tr><tr><td>
           <p><code><a href="scrape_all_sections.html">scrape_all_sections()</a></code> </p>
         </td>
@@ -81,6 +119,10 @@
           <p><code><a href="scrape_mortality_user_guide_specific.html">scrape_mortality_user_guide_specific()</a></code> </p>
         </td>
         <td><p>Scrape CDC Mortality User Guide for a Specific Year</p></td>
+      </tr><tr><td>
+          <p><code><a href="usdeaths-package.html">usdeaths</a></code> <code><a href="usdeaths-package.html">usdeaths-package</a></code> </p>
+        </td>
+        <td><p>usdeaths: Scrape CDC Vital Statistics File Links</p></td>
       </tr></tbody></table></div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -90,7 +132,7 @@
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Mitchell Mecham, J. Hathaway.</p>
+  <p></p><p>Developed by Mitchell Mecham, Jonathan Oliphant, J. Hathaway.</p>
 </div>
 
 <div class="pkgdown">
