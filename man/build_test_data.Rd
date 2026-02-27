@@ -15,7 +15,7 @@ build_test_data(dat, nrow = 50)
 Takes any dataframe and builds a small sample table
 }
 \examples{
-people <- tibble(
+people <- tibble::tibble(
    name = c("Alice", "Bob", "Carol"),
    age = c(25, 30, 28),
    score = c(88.5, 92.0, 79.3)
