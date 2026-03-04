@@ -4,6 +4,7 @@ Version: 0.0.0.9000
 Authors@R: 
   c(
     person("Mitchell", "Mecham", , "mechamit000@gmail.com", role = c("aut")),
+    person("Jonathan", "Oliphant", , "jonathanoliphant13@gmail.com", role = c("aut")),
     person("J. ", "Hathaway", , "hathawayj@byui.edu", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-1574-0832")),
     person("Philip", "Rosenquist", "ros21033@byui.edu", role = c("aut"))
@@ -17,6 +18,7 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
 Imports:
     dplyr,
+    rlang,
     rvest,
     xml2,
     stringr,
@@ -25,10 +27,14 @@ Imports:
     tidyr,
     magrittr,
     httr2,
+    readr
 Suggests: 
     testthat (>= 3.0.0),
-    withr
+    withr,
+    knitr,
+    rmarkdown
 Config/testthat/edition: 3
 Depends: 
     R (>= 3.5)
 LazyData: true
+VignetteBuilder: knitr
