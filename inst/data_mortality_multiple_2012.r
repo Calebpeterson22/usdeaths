@@ -1,6 +1,6 @@
 library(tidyverse)
 
-data_multiple_mortality_2012 <- tribble(
+data_mortality_multiple_2012 <- tribble(
   ~name, ~start, ~end, ~size, ~type, ~description, ~codes,
   # ... [Positions 1-164 same as 2010/2011] ...
   "reserved_1", 1, 19, 19, "str", "Reserved Positions", "Blank",
@@ -26,4 +26,4 @@ data_multiple_mortality_2012 <- tribble(
   "hispanic_origin_race_recode", 488, 488, 1, "int", "Hispanic origin/race recode", "1-5=Hispanic|6=NH White|7=NH Black|8=Other|9=Unknown"
 )
 
-usethis::use_data(data_multiple_mortality_2012, overwrite = TRUE)
+usethis::use_data(data_mortality_multiple_2012, overwrite = TRUE)

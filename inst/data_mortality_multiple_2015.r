@@ -1,16 +1,16 @@
 library(tidyverse)
 
-data_multiple_mortality_2013 <- tribble(
+data_mortality_multiple_2015 <- tribble(
   ~name, ~start, ~end, ~size, ~type, ~description, ~codes,
   # ... [Positions 1-164 same as previous years] ...
   "reserved_1", 1, 19, 19, "str", "Reserved Positions", "Blank",
   "resident_status", 20, 20, 1, "int", "Resident status", "1=Residents|2=Intrastate Nonresidents|3=Interstate Nonresidents|4=Foreign Residents",
-  # ... [2013 Year Marker] ...
-  "current_data_year", 102, 105, 4, "int", "Current data year", "2013",
+  # ... [2015 Year Marker] ...
+  "current_data_year", 102, 105, 4, "int", "Current data year", "2015",
   # ... [Condition Blocks 165-443] ...
   "num_entity_axis_conditions", 163, 164, 2, "int", "Number of entity-axis conditions", "00-20",
   "condition_1", 165, 171, 7, "str", "Entity-axis condition 1", "pos1=part/line, pos2=seq, pos3-6=ICD",
-  # [Note: Rows for conditions 2-20 and record conditions 1-20 are same as 2011/2012]
+  # [Note: Rows for conditions 2-20 and record conditions 1-20 are same as 2011-2014]
   "record_condition_20", 439, 443, 5, "str", "Record-axis condition 20", "",
   "reserved_10", 444, 444, 1, "str", "Reserved Position", "Blank",
   # ... [Demographics] ...
@@ -25,4 +25,4 @@ data_multiple_mortality_2013 <- tribble(
   "hispanic_origin_race_recode", 488, 488, 1, "int", "Hispanic origin/race recode", "1-5=Hispanic|6=NH White|7=NH Black|8=Other|9=Unknown"
 )
 
-usethis::use_data(data_multiple_mortality_2013, overwrite = TRUE)
+usethis::use_data(data_mortality_multiple_2015, overwrite = TRUE)

@@ -1,6 +1,6 @@
 library(tidyverse)
 
-data_multiple_mortality_2010 <- tribble(
+data_mortality_multiple_2010 <- tribble(
     ~name, ~start, ~end, ~size, ~type, ~description, ~codes,
     "reserved_1", 1, 19, 19, "str", "Reserved Positions", "Blank",
     "resident_status", 20, 20, 1, "int", "Resident status", "1=Residents|2=Intrastate Nonresidents|3=Interstate Nonresidents|4=Foreign Residents",
@@ -95,4 +95,4 @@ data_multiple_mortality_2010 <- tribble(
 )
 
 # SAVE TO THE DATA FOLDER
-usethis::use_data(data_multiple_mortality_2010, overwrite = TRUE)
+usethis::use_data(data_mortality_multiple_2010, overwrite = TRUE)

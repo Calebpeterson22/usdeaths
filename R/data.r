@@ -105,6 +105,27 @@ NULL
 "data_mortality_multiple_1987"
 
 #' @rdname mortality_layouts
+"data_mortality_multiple_2010"
+
+#' @rdname mortality_layouts
+"data_mortality_multiple_2011"
+
+#' @rdname mortality_layouts
+"data_mortality_multiple_2012"
+
+#' @rdname mortality_layouts
+"data_mortality_multiple_2013"
+
+#' @rdname mortality_layouts
+"data_mortality_multiple_2014"
+
+#' @rdname mortality_layouts
+"data_mortality_multiple_2015"
+
+#' @rdname mortality_layouts
+"data_mortality_multiple_2016"
+
+#' @rdname mortality_layouts
 #' @note Both 1989 and 2003 education revision fields are present. Bridged-race
 #'   variables are the only race summary fields; \code{race_recode_40} is absent.
 #' @note Occupation and industry fields are absent. \code{method_of_disposition}

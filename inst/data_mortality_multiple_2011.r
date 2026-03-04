@@ -1,6 +1,6 @@
 library(tidyverse)
 
-data_multiple_mortality_2011 <- tribble(
+data_mortality_multiple_2011 <- tribble(
   ~name, ~start, ~end, ~size, ~type, ~description, ~codes,
   # ... [Positions 1-164 same as 2010] ...
   "reserved_1", 1, 19, 19, "str", "Reserved Positions", "Blank",
@@ -63,4 +63,4 @@ data_multiple_mortality_2011 <- tribble(
 )
 
 
-usethis::use_data(data_multiple_mortality_2011, overwrite = TRUE)
+usethis::use_data(data_mortality_multiple_2011, overwrite = TRUE)
