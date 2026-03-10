@@ -7,7 +7,7 @@ Authors@R:
     person("Jonathan", "Oliphant", , "jonathanoliphant13@gmail.com", role = c("aut")),
     person("J. ", "Hathaway", , "hathawayj@byui.edu", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-1574-0832")),
-    person("Philip", "Rosenquist", "ros21033@byui.edu", role = c("aut"))
+    person("Philip", "Rosenquist", ,"ros21033@byui.edu", role = c("aut"))
   )
 Description: Provides tools to scrape and parse downloadable file links from
     the CDC Vital Statistics Online data access pages, including births,
