@@ -23,6 +23,13 @@
 \alias{data_mortality_multiple_1985}
 \alias{data_mortality_multiple_1986}
 \alias{data_mortality_multiple_1987}
+\alias{data_mortality_multiple_2010}
+\alias{data_mortality_multiple_2011}
+\alias{data_mortality_multiple_2012}
+\alias{data_mortality_multiple_2013}
+\alias{data_mortality_multiple_2014}
+\alias{data_mortality_multiple_2015}
+\alias{data_mortality_multiple_2016}
 \alias{data_mortality_multiple_2017}
 \alias{data_mortality_multiple_2018}
 \alias{data_mortality_multiple_2019}
@@ -90,6 +97,20 @@ An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) w
 An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 108 rows and 6 columns.
 
 An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 106 rows and 6 columns.
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 88 rows and 7 columns.
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 56 rows and 7 columns.
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 17 rows and 7 columns.
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 16 rows and 7 columns.
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 16 rows and 7 columns.
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 16 rows and 7 columns.
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 16 rows and 7 columns.
 
 An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 88 rows and 7 columns.
 
@@ -164,6 +185,20 @@ data_mortality_multiple_1985
 data_mortality_multiple_1986
 
 data_mortality_multiple_1987
+
+data_mortality_multiple_2010
+
+data_mortality_multiple_2011
+
+data_mortality_multiple_2012
+
+data_mortality_multiple_2013
+
+data_mortality_multiple_2014
+
+data_mortality_multiple_2015
+
+data_mortality_multiple_2016
 
 data_mortality_multiple_2017
 

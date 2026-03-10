@@ -18,7 +18,40 @@
 "cdc_link_lookup"
 
 
+#' Birth Cohort Layouts
+#'
+#' Layout data for birth cohort files.
+#'
+#' @name birth_cohort_layouts
+#' @docType data
+NULL
 
+#' @rdname birth_cohort_layouts
+"data_birth_cohort_1983"
+
+
+#' Births Layouts
+#'
+#' Layout data for births files.
+#'
+#' @name births_layouts
+#' @docType data
+NULL
+
+#' @rdname births_layouts
+"data_births_1978"
+
+
+#' Fetal Death Layouts
+#'
+#' Layout data for fetal death files.
+#'
+#' @name fetal_death_layouts
+#' @docType data
+NULL
+
+#' @rdname fetal_death_layouts
+"data_fetal_death_1982"
 
 #' Mortality multiple cause data layouts
 #'
@@ -40,7 +73,6 @@
 #' @source \url{https://ftp.cdc.gov/pub/Health_Statistics/NCHS/Datasets/DVS/mortality/}
 #' @name mortality_layouts
 NULL
-
 
 #' @rdname mortality_layouts
 "data_mortality_multiple_1968"

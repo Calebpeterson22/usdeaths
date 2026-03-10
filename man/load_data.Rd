@@ -2,18 +2,27 @@
 % Please edit documentation in R/load_data.r
 \name{load_data}
 \alias{load_data}
-\title{read fixed width downloaded data}
+\title{Load CDC Fixed-Width Data}
 \usage{
 load_data(path, meta)
 }
 \arguments{
-\item{path}{the file path returned from \code{download_cdc()} or the path to the zip file downloaded.}
+\item{path}{the file path returned from \code{download_cdc()} or the URL to the zip file.}
 
 \item{meta}{the \code{data_} object with the metadata needed to read the fixed width file format.}
 }
+\value{
+A tibble for standard datasets, or a named list with \code{denominator}
+and \code{numerator} tibbles for linked birth cohort data.
+}
 \description{
-read fixed width downloaded data
+Load CDC Fixed-Width Data
 }
 \details{
 Uses output from \code{download_cdc()} to load the data into R as a tibble.
+For most datasets this returns a single tibble. For linked birth/infant death
+cohort data (identified automatically from the URL), it returns a named list
+with two elements: \code{denominator} (all births) and \code{numerator}
+(linked infant death records only). See \code{load_data_birth_cohort()} for
+details on the den/num structure.
 }
