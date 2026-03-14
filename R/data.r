@@ -29,6 +29,30 @@ NULL
 #' @rdname birth_cohort_layouts
 "data_birth_cohort_1983"
 
+#' @rdname birth_cohort_layouts
+"data_birth_cohort_2008"
+
+#' @rdname birth_cohort_layouts
+"data_birth_cohort_2009"
+
+#' @rdname birth_cohort_layouts
+"data_birth_cohort_2010"
+
+#' @rdname birth_cohort_layouts
+#' @note Substantial restructuring from 2010: revision codes revert to R/U,
+#'   birth time added at positions 25-28, paternity acknowledged added at 152,
+#'   unrevised education fields dropped, father's education added, prior
+#'   terminations added, WIC and pre-pregnancy cigarettes added, infections
+#'   block added, maternal morbidity block added, APGAR-10 added, and a large
+#'   new block of fields (524-568) covering BMI, inter-pregnancy intervals,
+#'   maternal height/weight, and set order. Reporting flags restructured to
+#'   4-level codes.
+"data_birth_cohort_2011"
+
+#' @rdname birth_cohort_layouts
+#' @note Identical structure to 2011 except father's combined age unrevised
+#'   (positions 184-185) is dropped to filler.
+"data_birth_cohort_2012"
 
 #' Births Layouts
 #'
