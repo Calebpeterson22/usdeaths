@@ -42,6 +42,27 @@ NULL
 "data_births_1978"
 
 
+#' @rdname births_layouts
+"data_births_2018"
+
+#' @rdname births_layouts
+"data_births_2019"
+
+#' @rdname births_layouts
+"data_births_2020"
+
+#' @rdname births_layouts
+"data_births_2021"
+
+#' @rdname births_layouts
+"data_births_2022"
+
+#' @rdname births_layouts
+"data_births_2023"
+
+#' @rdname births_layouts
+"data_births_2024"
+
 #' Fetal Death Layouts
 #'
 #' Layout data for fetal death files.

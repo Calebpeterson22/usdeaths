@@ -1,0 +1,184 @@
+data_births_2019 <- tribble(
+  ~name,                 ~start, ~end, ~size, ~type, ~description,                                       ~codes,
+
+  # ── Filler / Date of Birth ────────────────────────────────────────────────
+  "filler_1",                 1,    8,    8,  "str",  "Filler",                                          "",
+  "dob_yy",                   9,   12,    4,  "int",  "Birth Year",                                      "2019=2019",
+  "dob_mm",                  13,   14,    2,  "int",  "Birth Month",                                     "01=January|02=February|03=March|04=April|05=May|06=June|07=July|08=August|09=September|10=October|11=November|12=December",
+  "filler_2",                15,   18,    4,  "str",  "Filler",                                          "",
+  "dob_tt",                  19,   22,    4,  "int",  "Time of Birth",                                   "0000-2359=Time of birth|9999=Not stated",
+  "dob_wk",                  23,   23,    1,  "int",  "Birth Day of Week",                               "1=Sunday|2=Monday|3=Tuesday|4=Wednesday|5=Thursday|6=Friday|7=Saturday",
+
+  "filler_3",                24,   31,    8,  "str",  "Filler",                                          "",
+
+  # ── Place of Birth ────────────────────────────────────────────────────────
+  "bfacil",                  32,   32,    1,  "int",  "Birth Place",                                     "1=Hospital|2=Freestanding Birth Center|3=Home (intended)|4=Home (not intended)|5=Home (unknown if intended)|6=Clinic / Doctor's Office|7=Other|9=Unknown",
+  "f_facility",              33,   33,    1,  "int",  "Reporting Flag for Birth Place",                  "0=Non-Reporting|1=Reporting",
+  "filler_4",                34,   49,   16,  "str",  "Filler",                                          "",
+  "bfacil3",                 50,   50,    1,  "int",  "Facility Recode",                                 "1=In Hospital|2=Not in Hospital|3=Unknown or Not Stated",
+  "filler_b",                51,   72,   22,  "str",  "Filler",                                          "",
+
+  # ── Mother's Age (positions 73–83) ───────────────────────────────────────
+  "mage_impflg",             73,   73,    1,  "str",  "Mother's Age Imputed",                            "blank=Age not imputed|1=Age imputed",
+  "mage_repflg",             74,   74,    1,  "str",  "Reported Age of Mother Used Flag",                "blank=Reported age not used|1=Reported age used",
+  "mager",                   75,   76,    2,  "int",  "Mother's Single Years of Age",                    "12=10-12 years|13=13 years|14=14 years|15=15 years|16=16 years|17=17 years|18=18 years|19=19 years|20=20 years|21=21 years|22=22 years|23=23 years|24=24 years|25=25 years|26=26 years|27=27 years|28=28 years|29=29 years|30=30 years|31=31 years|32=32 years|33=33 years|34=34 years|35=35 years|36=36 years|37=37 years|38=38 years|39=39 years|40=40 years|41=41 years|42=42 years|43=43 years|44=44 years|45=45 years|46=46 years|47=47 years|48=48 years|49=49 years|50=50 years and over",
+  "mager14",                 77,   78,    2,  "int",  "Mother's Age Recode 14",                          "01=Under 15 years|03=15 years|04=16 years|05=17 years|06=18 years|07=19 years|08=20-24 years|09=25-29 years|10=30-34 years|11=35-39 years|12=40-44 years|13=45-49 years|14=50-54 years",
+  "mager9",                  79,   79,    1,  "int",  "Mother's Age Recode 9",                           "1=Under 15 years|2=15-19 years|3=20-24 years|4=25-29 years|5=30-34 years|6=35-39 years|7=40-44 years|8=45-49 years|9=50-54 years",
+  "filler_5",                80,   83,    4,  "str",  "Filler",                                          "",
+
+  # ── Mother Nativity / Residence (positions 84–104) ───────────────────────
+  "mbstate_rec",             84,   84,    1,  "int",  "Mother's Nativity",                               "1=Born in the U.S. (50 US States)|2=Born outside the U.S. (includes possessions)|3=Unknown or Not Stated",
+  "filler_6",                85,  103,   19,  "str",  "Filler",                                          "",
+  "restatus",               104,  104,    1,  "int",  "Residence Status",                                "1=Resident (state and county of occurrence and residence are the same)|2=Intrastate Nonresident (state same, county different)|3=Interstate Nonresident (state different, both in 50 states or DC)|4=Foreign Resident (residence not in 50 states or DC)",
+
+  # ── Mother's Race (positions 105–118) ────────────────────────────────────
+  "mrace31",                105,  106,    2,  "int",  "Mother's Race Recode 31",                         "01=White (only)|02=Black (only)|03=AIAN (only)|04=Asian (only)|05=NHOPI (only)|06=Black and White|07=Black and AIAN|08=Black and Asian|09=Black and NHOPI|10=AIAN and White|11=AIAN and Asian|12=AIAN and NHOPI|13=Asian and White|14=Asian and NHOPI|15=NHOPI and White|16=Black, AIAN, and White|17=Black, AIAN, and Asian|18=Black, AIAN, and NHOPI|19=Black, Asian, and White|20=Black, Asian, and NHOPI|21=Black, NHOPI, and White|22=AIAN, Asian, and White|23=AIAN, NHOPI, and White|24=AIAN, Asian, and NHOPI|25=Asian, NHOPI, and White|26=Black, AIAN, Asian, and White|27=Black, AIAN, Asian, and NHOPI|28=Black, AIAN, NHOPI, and White|29=Black, Asian, NHOPI, and White|30=AIAN, Asian, NHOPI, and White|31=Black, AIAN, Asian, NHOPI, and White",
+  "mrace6",                 107,  107,    1,  "int",  "Mother's Race Recode 6",                          "1=White (only)|2=Black (only)|3=AIAN (only)|4=Asian (only)|5=NHOPI (only)|6=More than one race",
+  "mrace15",                108,  109,    2,  "int",  "Mother's Race Recode 15",                         "01=White (only)|02=Black (only)|03=AIAN (only)|04=Asian Indian (only)|05=Chinese (only)|06=Filipino (only)|07=Japanese (only)|08=Korean (only)|09=Vietnamese (only)|10=Other Asian (only)|11=Hawaiian (only)|12=Guamanian (only)|13=Samoan (only)|14=Other Pacific Islander (only)|15=More than one race",
+  "mbrace",                 110,  110,    1,  "int",  "Bridged Race of Mother",                          "1=White|2=Black|3=American Indian or Alaskan Native|4=Asian or Pacific Islander",
+  "mraceimp",               111,  111,    1,  "str",  "Mother's Race Imputed Flag",                      "blank=Mother's race not imputed|1=Unknown race imputed|2=All other races (formerly coded 09) imputed",
+  "mhispx",                 112,  112,    1,  "int",  "Mother's Hispanic Origin",                        "0=Non-Hispanic|1=Mexican|2=Puerto Rican|3=Cuban|4=Central or South American|6=Other and Unknown Hispanic|9=Origin unknown or not stated",
+  "filler_8",               113,  114,    2,  "str",  "Filler",                                          "",
+  "mhisp_r",                115,  115,    1,  "int",  "Mother's Hispanic Origin Recode",                 "0=Non-Hispanic|1=Mexican|2=Puerto Rican|3=Cuban|4=Central and South American|5=Other and Unknown Hispanic origin|9=Hispanic origin not stated",
+  "f_mhisp",                116,  116,    1,  "int",  "Reporting Flag for Mother's Origin",              "0=Non-Reporting|1=Reporting",
+  "mracehisp",              117,  117,    1,  "int",  "Mother's Race/Hispanic Origin",                   "1=Non-Hispanic White (only)|2=Non-Hispanic Black (only)|3=Non-Hispanic AIAN (only)|4=Non-Hispanic Asian (only)|5=Non-Hispanic NHOPI (only)|6=Non-Hispanic more than one race|7=Hispanic|8=Origin unknown or not stated",
+  "filler_9",               118,  118,    1,  "str",  "Filler",                                          "",
+
+  # ── Marital Status / Paternity (positions 119–123) ───────────────────────
+  "mar_p",                  119,  119,    1,  "str",  "Paternity Acknowledged",                          "Y=Yes|N=No|U=Unknown|X=Not Applicable",
+  "dmar",                   120,  120,    1,  "int",  "Marital Status",                                  "1=Married|2=Unmarried",
+  "mar_imp",                121,  121,    1,  "str",  "Mother's Marital Status Imputed",                 "blank=Marital Status not imputed|1=Marital Status imputed",
+  "filler_10",              122,  122,    1,  "str",  "Filler",                                          "",
+  "f_mar_p",                123,  123,    1,  "int",  "Reporting Flag for Paternity Acknowledged",       "0=Non-Reporting|1=Reporting",
+
+  # ── Mother's Education (positions 124–141) ───────────────────────────────
+  "meduc",                  124,  124,    1,  "int",  "Mother's Education",                              "1=8th grade or less|2=9th through 12th grade with no diploma|3=High school graduate or GED completed|4=Some college credit, but not a degree|5=Associate degree (AA,AS)|6=Bachelor's degree (BA, AB, BS)|7=Master's degree (MA, MS, MEng, MEd, MSW, MBA)|8=Doctorate (PhD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)|9=Unknown",
+  "filler_11",              125,  125,    1,  "str",  "Filler",                                          "",
+  "f_meduc",                126,  126,    1,  "int",  "Reporting Flag for Education of Mother",          "0=Non-Reporting|1=Reporting",
+  "filler_m",               127,  141,   15,  "str",  "Filler",                                          "",
+
+  # ── Father's Age (positions 142–150) ─────────────────────────────────────
+  "fagerpt_flg",            142,  142,    1,  "str",  "Father's Reported Age Used",                      "blank=Father's reported age not used|1=Father's reported age used",
+  "filler_12",              143,  146,    4,  "str",  "Filler",                                          "",
+  "fagecomb",               147,  148,    2,  "int",  "Father's Combined Age",                           "09-98=Father's combined age in years|99=Unknown or not stated",
+  "fagerec11",              149,  150,    2,  "int",  "Father's Age Recode 11",                          "01=Under 15 years|02=15-19 years|03=20-24 years|04=25-29 years|05=30-34 years|06=35-39 years|07=40-44 years|08=45-49 years|09=50-54 years|10=55-98 years|11=Not stated",
+
+  # ── Father's Race (positions 151–165) ────────────────────────────────────
+  "frace31",                151,  152,    2,  "int",  "Father's Race Recode 31",                         "01=White (only)|02=Black (only)|03=AIAN (only)|04=Asian (only)|05=NHOPI (only)|06=Black and White|07=Black and AIAN|08=Black and Asian|09=Black and NHOPI|10=AIAN and White|11=AIAN and Asian|12=AIAN and NHOPI|13=Asian and White|14=Asian and NHOPI|15=NHOPI and White|16=Black, AIAN, and White|17=Black, AIAN, and Asian|18=Black, AIAN, and NHOPI|19=Black, Asian, and White|20=Black, Asian, and NHOPI|21=Black, NHOPI, and White|22=AIAN, Asian, and White|23=AIAN, NHOPI, and White|24=AIAN, Asian, and NHOPI|25=Asian, NHOPI, and White|26=Black, AIAN, Asian, and White|27=Black, AIAN, Asian, and NHOPI|28=Black, AIAN, NHOPI, and White|29=Black, Asian, NHOPI, and White|30=AIAN, Asian, NHOPI, and White|31=Black, AIAN, Asian, NHOPI, and White|99=Unknown or Not Stated",
+  "frace6",                 153,  153,    1,  "int",  "Father's Race Recode 6",                          "1=White (only)|2=Black (only)|3=AIAN (only)|4=Asian (only)|5=NHOPI (only)|6=More than one race|9=Unknown or Not Stated",
+  "frace15",                154,  155,    2,  "int",  "Father's Race Recode 15",                         "01=White (only)|02=Black (only)|03=AIAN (only)|04=Asian Indian (only)|05=Chinese (only)|06=Filipino (only)|07=Japanese (only)|08=Korean (only)|09=Vietnamese (only)|10=Other Asian (only)|11=Hawaiian (only)|12=Guamanian (only)|13=Samoan (only)|14=Other Pacific Islander (only)|15=More than one race|99=Unknown or Not Stated",
+  "filler_13",              156,  158,    3,  "str",  "Filler",                                          "",
+  "fhispx",                 159,  159,    1,  "int",  "Father's Hispanic Origin",                        "0=Non-Hispanic|1=Mexican|2=Puerto Rican|3=Cuban|4=Central or South American|5=Dominican|6=Other and Unknown Hispanic|9=Origin unknown or not stated",
+  "fhisp_r",                160,  160,    1,  "int",  "Father's Hispanic Origin Recode",                 "0=Non-Hispanic|1=Mexican|2=Puerto Rican|3=Cuban|4=Central and South American|5=Other and Unknown Hispanic origin|9=Hispanic origin not stated",
+  "f_fhisp",                161,  161,    1,  "int",  "Reporting Flag for Father's Origin",              "0=Non-Reporting|1=Reporting",
+  "fracehisp",              162,  162,    1,  "int",  "Father's Race/Hispanic Origin",                   "1=Non-Hispanic White (only)|2=Non-Hispanic Black (only)|3=Non-Hispanic AIAN (only)|4=Non-Hispanic Asian (only)|5=Non-Hispanic NHOPI (only)|6=Non-Hispanic more than one race|7=Hispanic|8=Origin unknown or not stated|9=Race unknown or not stated (Non-Hispanic)",
+  "feduc",                  163,  163,    1,  "int",  "Father's Education",                              "1=8th grade or less|2=9th through 12th grade with no diploma|3=High school graduate or GED completed|4=Some college credit, but not a degree|5=Associate degree (AA,AS)|6=Bachelor's degree (BA, AB, BS)|7=Master's degree (MA, MS, MEng, MEd, MSW, MBA)|8=Doctorate (PhD, EdD) or Professional Degree (MD, DDS, DVM, LLB, JD)|9=Unknown",
+  "filler_14",              164,  164,    1,  "str",  "Filler",                                          "",
+  "f_feduc",                165,  165,    1,  "int",  "Reporting Flag for Education of Father",          "0=Non-Reporting|1=Reporting",
+  "filler_f",               166,  170,    5,  "str",  "Filler",                                          "",
+
+  # ── Birth Order / Parity (positions 171–197) ─────────────────────────────
+  "priorlive",              171,  172,    2,  "int",  "Prior Births Now Living",                         "00-30=Number of children still living from previous live births|99=Unknown or not stated",
+  "priordead",              173,  174,    2,  "int",  "Prior Births Now Dead",                           "00-30=Number of children dead from previous live births|99=Unknown or not stated",
+  "priorterm",              175,  176,    2,  "int",  "Prior Other Terminations",                        "00-30=Number of other terminations|99=Unknown or not stated",
+  "filler_15",              177,  178,    2,  "str",  "Filler",                                          "",
+  "lbo_rec",                179,  179,    1,  "int",  "Live Birth Order Recode",                         "1-7=Number of live birth order|8=8 or more live births|9=Unknown or not stated",
+  "filler_16",              180,  181,    2,  "str",  "Filler",                                          "",
+  "tbo_rec",                182,  182,    1,  "int",  "Total Birth Order Recode",                        "1-7=Number of total birth order|8=8 or more total births|9=Unknown or not stated",
+  "filler_17",              183,  197,   15,  "str",  "Filler",                                          "",
+
+  # ── Birth Interval (positions 198–223) ───────────────────────────────────
+  "illb_r",                 198,  200,    3,  "int",  "Interval Since Last Live Birth Recode",           "000-003=Plural delivery|004-300=Months since last live birth|888=Not applicable / 1st live birth|999=Unknown or not stated",
+  "illb_r11",               201,  202,    2,  "int",  "Interval Since Last Live Birth Recode 11",        "00=Zero to 3 months (plural delivery)|01=4 to 11 months|02=12 to 17 months|03=18 to 23 months|04=24 to 35 months|05=36 to 47 months|06=48 to 59 months|07=60 to 71 months|08=72 months and over|88=Not applicable (1st live birth)|99=Unknown or not stated",
+  "filler_18",              203,  205,    3,  "str",  "Filler",                                          "",
+  "ilop_r",                 206,  208,    3,  "int",  "Interval Since Last Other Pregnancy Recode",      "000-003=Plural delivery|004-300=Months since last live birth|888=Not applicable / 1st natality event|999=Unknown or not stated",
+  "ilop_r11",               209,  210,    2,  "int",  "Interval Since Last Other Pregnancy Recode 11",   "00=Zero to 3 months (plural delivery)|01=4 to 11 months|02=12 to 17 months|03=18 to 23 months|04=24 to 35 months|05=36 to 47 months|06=48 to 59 months|07=60 to 71 months|08=72 months and over|88=Not applicable (1st natality event)|99=Unknown or not stated",
+  "filler_19",              211,  213,    3,  "str",  "Filler",                                          "",
+  "ilp_r",                  214,  216,    3,  "int",  "Interval Since Last Pregnancy Recode",            "000-003=Plural delivery|004-300=Months since last live birth|888=Not applicable / no previous pregnancy|999=Unknown or not stated",
+  "ilp_r11",                217,  218,    2,  "int",  "Interval Since Last Pregnancy Recode 11",         "00=Zero to 3 months (plural delivery)|01=4 to 11 months|02=12 to 17 months|03=18 to 23 months|04=24 to 35 months|05=36 to 47 months|06=48 to 59 months|07=60 to 71 months|08=72 months and over|88=Not applicable (no previous pregnancy)|99=Unknown or not stated",
+  "filler_p",               219,  223,    5,  "str",  "Filler",                                          "",
+
+  # ── Prenatal Care (positions 224–250) ────────────────────────────────────
+  "precare",                224,  225,    2,  "int",  "Month Prenatal Care Began",                       "00=No prenatal care|01-10=Month prenatal care began|99=Unknown or not stated",
+  "f_mpcb",                 226,  226,    1,  "int",  "Reporting Flag for Month Prenatal Care Began",    "0=Non-Reporting|1=Reporting",
+  "precare5",               227,  227,    1,  "int",  "Month Prenatal Care Began Recode",                "1=1st to 3rd month|2=4th to 6th month|3=7th to final month|4=No prenatal care|5=Unknown or not stated",
+  "filler_20",              228,  237,   10,  "str",  "Filler",                                          "",
+  "previs",                 238,  239,    2,  "int",  "Number of Prenatal Visits",                       "00-98=Number of prenatal visits|99=Unknown or not stated",
+  "filler_21",              240,  241,    2,  "str",  "Filler",                                          "",
+  "previs_rec",             242,  243,    2,  "int",  "Number of Prenatal Visits Recode",                "01=No visits|02=1 to 2 visits|03=3 to 4 visits|04=5 to 6 visits|05=7 to 8 visits|06=9 to 10 visits|07=11 to 12 visits|08=13 to 14 visits|09=15 to 16 visits|10=17 to 18 visits|11=19 or more visits|12=Unknown or not stated",
+  "f_tpcv",                 244,  244,    1,  "int",  "Reporting Flag for Total Prenatal Care Visits",   "0=Non-Reporting|1=Reporting",
+  "filler_22",              245,  250,    6,  "str",  "Filler",                                          "",
+
+  # ── WIC (positions 251–252) ───────────────────────────────────────────────
+  "wic",                    251,  251,    1,  "str",  "WIC",                                             "Y=Yes|N=No|U=Unknown or not stated",
+  "f_wic",                  252,  252,    1,  "int",  "Reporting Flag for WIC",                          "0=Non-Reporting|1=Reporting",
+
+  # ── Cigarette Smoking (positions 253–279) ────────────────────────────────
+  "cig_0",                  253,  254,    2,  "int",  "Cigarettes Before Pregnancy",                     "00-97=Number of cigarettes daily|98=98 or more cigarettes daily|99=Unknown or not stated",
+  "cig_1",                  255,  256,    2,  "int",  "Cigarettes 1st Trimester",                        "00-97=Number of cigarettes daily|98=98 or more cigarettes daily|99=Unknown or not stated",
+  "cig_2",                  257,  258,    2,  "int",  "Cigarettes 2nd Trimester",                        "00-97=Number of cigarettes daily|98=98 or more cigarettes daily|99=Unknown or not stated",
+  "cig_3",                  259,  260,    2,  "int",  "Cigarettes 3rd Trimester",                        "00-97=Number of cigarettes daily|98=98 or more cigarettes daily|99=Unknown or not stated",
+  "cig0_r",                 261,  261,    1,  "int",  "Cigarettes Before Pregnancy Recode",              "0=Nonsmoker|1=1-5|2=6-10|3=11-20|4=21-40|5=41 or more|6=Unknown or not stated",
+  "cig1_r",                 262,  262,    1,  "int",  "Cigarettes 1st Trimester Recode",                 "0=Nonsmoker|1=1-5|2=6-10|3=11-20|4=21-40|5=41 or more|6=Unknown or not stated",
+  "cig2_r",                 263,  263,    1,  "int",  "Cigarettes 2nd Trimester Recode",                 "0=Nonsmoker|1=1-5|2=6-10|3=11-20|4=21-40|5=41 or more|6=Unknown or not stated",
+  "cig3_r",                 264,  264,    1,  "int",  "Cigarettes 3rd Trimester Recode",                 "0=Nonsmoker|1=1-5|2=6-10|3=11-20|4=21-40|5=41 or more|6=Unknown or not stated",
+  "f_cigs_0",               265,  265,    1,  "int",  "Reporting Flag for Cigarettes before Pregnancy",  "0=Non-Reporting|1=Reporting",
+  "f_cigs_1",               266,  266,    1,  "int",  "Reporting Flag for Cigarettes 1st Trimester",     "0=Non-Reporting|1=Reporting",
+  "f_cigs_2",               267,  267,    1,  "int",  "Reporting Flag for Cigarettes 2nd Trimester",     "0=Non-Reporting|1=Reporting",
+  "f_cigs_3",               268,  268,    1,  "int",  "Reporting Flag for Cigarettes 3rd Trimester",     "0=Non-Reporting|1=Reporting",
+  "cig_rec",                269,  269,    1,  "str",  "Cigarette Recode",                                "Y=Yes|N=No|U=Unknown or not stated",
+  "f_tobaco",               270,  270,    1,  "int",  "Reporting Flag for Tobacco use",                  "0=Non-Reporting|1=Reporting",
+  "filler_r",               271,  279,    9,  "str",  "Filler",                                          "",
+
+  # ── Mother's Physical Characteristics (positions 280–312) ────────────────
+  "m_ht_in",                280,  281,    2,  "int",  "Mother's Height in Total Inches",                 "30-78=Height in inches|99=Unknown or not stated",
+  "f_m_ht",                 282,  282,    1,  "int",  "Reporting Flag for Mother's Height",              "0=Non-Reporting|1=Reporting",
+  "bmi",                    283,  286,    4,  "str",  "Body Mass Index",                                 "13.0-69.9=Body Mass Index|99.9=Unknown or not stated",
+  "bmi_r",                  287,  287,    1,  "int",  "Body Mass Index Recode",                          "1=Underweight <18.5|2=Normal 18.5-24.9|3=Overweight 25.0-29.9|4=Obesity I 30.0-34.9|5=Obesity II 35.0-39.9|6=Extreme Obesity III ≥40.0|9=Unknown or not stated",
+  "filler_23",              288,  291,    4,  "str",  "Filler",                                          "",
+  "pwgt_r",                 292,  294,    3,  "int",  "Pre-pregnancy Weight Recode",                     "075-375=Weight in pounds|999=Unknown or not stated",
+  "f_pwgt",                 295,  295,    1,  "int",  "Reporting Flag for Pre-pregnancy Weight",         "0=Non-Reporting|1=Reporting",
+  "filler_24",              296,  298,    3,  "str",  "Filler",                                          "",
+  "dwgt_r",                 299,  301,    3,  "int",  "Delivery Weight Recode",                          "100-400=Weight in pounds|999=Unknown or not stated",
+  "filler_25",              302,  302,    1,  "str",  "Filler",                                          "",
+  "f_dwgt",                 303,  303,    1,  "int",  "Reporting Flag for Delivery Weight",              "0=Non-Reporting|1=Reporting",
+  "wtgain",                 304,  305,    2,  "int",  "Weight Gain",                                     "00-97=Weight gain in pounds|98=98 pounds and over|99=Unknown or not stated",
+  "wtgain_rec",             306,  306,    1,  "int",  "Weight Gain Recode",                              "1=Less than 11 pounds|2=11 to 20 pounds|3=21 to 30 pounds|4=31 to 40 pounds|5=41 to 98 pounds|9=Unknown or not stated",
+  "f_wtgain",               307,  307,    1,  "int",  "Reporting Flag for Weight Gain",                  "0=Non-Reporting|1=Reporting",
+  "filler_w",               308,  312,    5,  "str",  "Filler",                                          "",
+
+  # ── Risk Factors in This Pregnancy (positions 313–342) ───────────────────
+  "rf_pdiab",               313,  313,    1,  "str",  "Pre-pregnancy Diabetes",                          "Y=Yes|N=No|U=Unknown or not stated",
+  "rf_gdiab",               314,  314,    1,  "str",  "Gestational Diabetes",                            "Y=Yes|N=No|U=Unknown or not stated",
+  "rf_phype",               315,  315,    1,  "str",  "Pre-pregnancy Hypertension",                      "Y=Yes|N=No|U=Unknown or not stated",
+  "rf_ghype",               316,  316,    1,  "str",  "Gestational Hypertension",                        "Y=Yes|N=No|U=Unknown or not stated",
+  "rf_ehype",               317,  317,    1,  "str",  "Hypertension Eclampsia",                          "Y=Yes|N=No|U=Unknown or not stated",
+  "rf_ppterm",              318,  318,    1,  "str",  "Previous Preterm Birth",                          "Y=Yes|N=No|U=Unknown or not stated",
+  "f_rf_pdiab",             319,  319,    1,  "int",  "Reporting Flag for Pre-pregnancy Diabetes",       "0=Non-Reporting|1=Reporting",
+  "f_rf_gdiab",             320,  320,    1,  "int",  "Reporting Flag for Gestational Diabetes",         "0=Non-Reporting|1=Reporting",
+  "f_rf_phyper",            321,  321,    1,  "int",  "Reporting Flag for Pre-pregnancy Hypertension",   "0=Non-Reporting|1=Reporting",
+  "f_rf_ghyper",            322,  322,    1,  "int",  "Reporting Flag for Gestational Hypertension",     "0=Non-Reporting|1=Reporting",
+  "f_rf_eclamp",            323,  323,    1,  "int",  "Reporting Flag for Hypertension Eclampsia",       "0=Non-Reporting|1=Reporting",
+  "f_rf_ppb",               324,  324,    1,  "int",  "Reporting Flag for Previous Preterm Birth",       "0=Non-Reporting|1=Reporting",
+  "rf_inftr",               325,  325,    1,  "str",  "Infertility Treatment Used",                      "Y=Yes|N=No|U=Unknown or not stated",
+  "rf_fedrg",               326,  326,    1,  "str",  "Fertility Enhancing Drugs",                       "Y=Yes|N=No|X=Not applicable|U=Unknown or not stated",
+  "rf_artec",               327,  327,    1,  "str",  "Assisted Reproductive Technology",                "Y=Yes|N=No|X=Not applicable|U=Unknown or not stated",
+  "f_rf_inft",              328,  328,    1,  "int",  "Reporting Flag for Infertility Treatment",        "0=Non-Reporting|1=Reporting",
+  "f_rf_inf_drg",           329,  329,    1,  "int",  "Reporting Flag for Fertility Enhancing Drugs",    "0=Non-Reporting|1=Reporting",
+  "f_rf_inf_art",           330,  330,    1,  "int",  "Reporting Flag for Assisted Reproductive Technology", "0=Non-Reporting|1=Reporting",
+  "rf_cesar",               331,  331,    1,  "str",  "Previous Cesarean",                               "Y=Yes|N=No|U=Unknown or not stated",
+  "rf_cesarn",              332,  333,    2,  "int",  "Number of Previous Cesareans",                    "00=None|01-30=Number of previous cesareans|99=Unknown or not stated",
+  "filler_26",              334,  334,    1,  "str",  "Filler",                                          "",
+  "f_rf_cesar",             335,  335,    1,  "int",  "Reporting Flag for Previous Cesarean",            "0=Non-Reporting|1=Reporting",
+  "f_rf_ncesar",            336,  336,    1,  "int",  "Reporting Flag for Number of Previous Cesareans", "0=Non-Reporting|1=Reporting",
+  "no_risks",               337,  337,    1,  "int",  "No Risk Factors Reported",                        "1=True|0=False|9=Not Reported",
+  "filler_rf",              338,  342,    5,  "str",  "Filler",                                          "",
+
+  # ── Infections Present (positions 343–358) ───────────────────────────────
+  "ip_gon",                 343,  343,    1,  "str",  "Gonorrhea",                                       "Y=Yes|N=No|U=Unknown or not stated",
+  "ip_syph",                344,  344,    1,  "str",  "Syphilis",                                        "Y=Yes|N=No|U=Unknown or not stated",
+  "ip_chlam",               345,  345,    1,  "str",  "Chlamydia",                                       "Y=Yes|N=No|U=Unknown or not stated",
+  "ip_hepb",                346,  346,    1,  "str",  "Hepatitis B",                                     "Y=Yes|N=No|U=Unknown or not stated"
+)
+
+usethis::use_data(data_births_2019, overwrite = TRUE)
