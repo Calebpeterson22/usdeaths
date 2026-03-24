@@ -1,0 +1,38 @@
+reference:
+
+
+- subtitle: Functions for data processing
+  desc:  Functions to parse and load data
+- contents:
+  - contains("get")
+  - contains("decode")
+  - contains("load")
+  - contains('read')
+  - contains('scrape')
+  - contains('build')
+  - contains('cdc')
+  - "parse_file_size_mb"
+  - "clean_all_sections"
+  - "usdeaths-package"
+
+- subtitle: Mortality Multiple Deaths `data_mortality_multiple_[YEAR]`
+  desc: Multiple cause-of-death mortality data files are record-level datasets from U.S. death certificates that include both the underlying cause of death and all other reported conditions contributing to death (“multiple causes”). For each decedent, they provide demographic details, place and time of death, and a full list of coded medical conditions, allowing researchers to study mortality patterns, comorbidities, and trends in causes of death over time.
+- contents:
+  - contains("mortality_multiple")
+
+- subtitle: Birth Cohorts Linked `data_birth_cohorts_[YEAR]`
+  desc: Birth Cohort Linked Birth-Infant Death data link each infant death to the infant's own birth certificate within a given birth year (cohort), providing detailed information on both maternal/birth characteristics and infant mortality outcomes for that birth cohort.
+- contents:
+  - contains("data_birth_cohort")
+
+- subtitle: Births `data_births_[YEAR]`
+  desc: The Birth Data files are record-level datasets from U.S. birth certificates that provide detailed information on births each year, including infant characteristics, maternal demographics and health behaviors, and pregnancy and delivery details, for use in independent statistical and epidemiologic analyses.
+- contents:
+  - starts_with("data_births_")
+
+- subtitle: Fetal Deaths `data_fetal_[YEAR]`
+  desc: Fetal Death data files are record-level datasets from U.S. fetal death reports that provide detailed information on late-pregnancy losses, including fetal characteristics (such as gestational age and birthweight), maternal demographics and health behaviors, pregnancy risk factors and complications, and, for recent years, cause of fetal death, to support statistical and epidemiologic analysis of fetal mortality patterns.
+- contents:
+  - starts_with("data_fetal_")
+
+

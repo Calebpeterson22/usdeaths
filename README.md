@@ -1,3 +1,19 @@
 # A package to support CDC US Deaths parsing `usdeaths`
 
 This package is intended to help with the parsing of the [CDC Death data](https://www.cdc.gov/nchs/data_access/VitalStatsOnline.htm#Mortality_Multiple). We are starting with the __Mortality Multiple Cause Files__ as those files are used by BYUI's DS 350 course based on the [data from a fivethirtyeight](https://github.com/fivethirtyeight/guns-data) [article on guns death](https://fivethirtyeight.com/features/gun-deaths/).  We want to make the retrieval and use of these data easier for R users.
+
+## Install Package
+
+### Smallest R Package to install from github
+
+```r
+install.packages("remotes") # one-time
+remotes::install_github('byuirpytooling/usdeaths')
+```
+
+### If you allready have `devtools` installed.
+
+```r
+devtools::install_github('byuirpytooling/usdeaths')
+```
+

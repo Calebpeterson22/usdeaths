@@ -95,42 +95,14 @@ to count infant deaths.</p></dd>
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">url</span> <span class="op">&lt;-</span> <span class="st">"https://ftp.cdc.gov/pub/Health_Statistics/NCHS/Datasets/DVS/cohortlinkedus/LinkCO83.zip"</span></span></span>
 <span class="r-in"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">load_data_birth_cohort</span><span class="op">(</span><span class="va">url</span>, <span class="va">data_birth_cohort_1983</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in httr2::req_perform(httr2::req_progress(httr2::request(url)),     path = temp):</span> Failed to perform HTTP request.</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Caused by error in `curl::curl_fetch_disk()`:</span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Timeout was reached [ftp.cdc.gov]:</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> Connection timed out after 10002 milliseconds</span>
 <span class="r-in"><span><span class="fu"><a href="decode_preview.html">decode_preview</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">denominator</span>, <span class="va">data_birth_cohort_1983</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1,000 × 10</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    match_status match_status_label year_of_birth year_of_birth_label record_type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 1            Matched Birth/Inf… 1983          Born in 1983        1          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 1            Matched Birth/Inf… 1983          Born in 1983        1          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 1            Matched Birth/Inf… 1983          Born in 1983        1          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 1            Matched Birth/Inf… 1983          Born in 1983        1          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 1            Matched Birth/Inf… 1983          Born in 1983        1          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 1            Matched Birth/Inf… 1983          Born in 1983        1          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 1            Matched Birth/Inf… 1983          Born in 1983        2          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 1            Matched Birth/Inf… 1983          Born in 1983        1          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 1            Matched Birth/Inf… 1983          Born in 1983        1          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 1            Matched Birth/Inf… 1983          Born in 1983        2          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 990 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 5 more variables: record_type_label &lt;chr&gt;, resident_status &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   resident_status_label &lt;chr&gt;, region_of_occurrence &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   region_of_occurrence_label &lt;chr&gt;</span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in data$denominator:</span> object of type 'closure' is not subsettable</span>
 <span class="r-in"><span><span class="fu"><a href="decode_preview.html">decode_preview</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">numerator</span>, <span class="va">data_birth_cohort_1983</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1,000 × 10</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    match_status match_status_label year_of_birth year_of_birth_label record_type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 1            Matched Birth/Inf… 1983          Born in 1983        1          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 1            Matched Birth/Inf… 1983          Born in 1983        2          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 1            Matched Birth/Inf… 1983          Born in 1983        1          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 1            Matched Birth/Inf… 1983          Born in 1983        2          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 1            Matched Birth/Inf… 1983          Born in 1983        2          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 1            Matched Birth/Inf… 1983          Born in 1983        1          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 1            Matched Birth/Inf… 1983          Born in 1983        1          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 1            Matched Birth/Inf… 1983          Born in 1983        1          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 1            Matched Birth/Inf… 1983          Born in 1983        1          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 1            Matched Birth/Inf… 1983          Born in 1983        1          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 990 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 5 more variables: record_type_label &lt;chr&gt;, resident_status &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   resident_status_label &lt;chr&gt;, region_of_occurrence &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   region_of_occurrence_label &lt;chr&gt;</span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in data$numerator:</span> object of type 'closure' is not subsettable</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
@@ -142,7 +114,7 @@ to count infant deaths.</p></dd>
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Mitchell Mecham, Jonathan Oliphant, J. Hathaway, Philip Rosenquist.</p>
+  <p></p><p>Developed by Mitchell Mecham, Jonathan Oliphant, J. Hathaway, Philip Rosenquist, Alyssa Cox.</p>
 </div>
 
 <div class="pkgdown">

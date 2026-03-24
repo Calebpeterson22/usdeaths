@@ -16,6 +16,7 @@ Authors:
   \item Mitchell Mecham \email{mechamit000@gmail.com}
   \item Jonathan Oliphant \email{jonathanoliphant13@gmail.com}
   \item Philip Rosenquist \email{ros21033@byui.edu}
+  \item Alyssa Cox \email{cox24018@byui.edu}
 }
 
 }
