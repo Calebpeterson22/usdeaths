@@ -10,3 +10,5 @@ pkgdown/
 docs/
 revdep/
 ^LICENSE\.md$
+^doc$
+^Meta$

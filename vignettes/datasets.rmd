@@ -1,0 +1,484 @@
+---
+title: "Primary Datasets in usdeaths"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Primary Datasets in usdeaths}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment  = "#>"
+)
+library(usdeaths)
+library(knitr)
+library(dplyr)
+```
+
+## Overview
+
+The `usdeaths` package provides fixed-width file layout metadata for the major
+U.S. vital statistics data products released by the CDC National Center for
+Health Statistics (NCHS). Layout objects describe field positions, data types,
+and code mappings for each year of each dataset. This vignette walks through
+how those layouts work, then describes each dataset family and what you can do
+with it.
+
+---
+
+## How Layout Objects Work
+
+Layout objects are **not** the data themselves — they are metadata tables that
+tell the package how to parse the raw fixed-width files you download from CDC.
+Every layout object in `usdeaths` is a tibble with the same 7-column structure:
+
+```{r schema, echo=FALSE}
+schema <- data.frame(
+  Column      = c("name", "start", "end", "size", "type", "description", "codes"),
+  Type        = c("character", "integer", "integer", "integer", "character", "character", "character"),
+  Description = c(
+    "R-friendly field name",
+    "Start position in the fixed-width file (1-indexed)",
+    "End position in the fixed-width file (inclusive)",
+    "Field width — always equals end - start + 1",
+    '"int" or "str"',
+    "Human-readable field description",
+    'Pipe-delimited key=label pairs (e.g. "1=January|2=February"), or "" if no coding'
+  )
+)
+kable(schema, caption = "Shared layout schema for all usdeaths layout objects")
+```
+
+Filler and reserved positions are included as rows (named `filler_1`,
+`filler_2`, etc.) so that gap-and-overlap validation passes cleanly across the
+entire record length.
+
+### Reading data with a layout
+
+The core workflow is always the same regardless of which dataset you are working
+with:
+
+```{r core-workflow, eval=FALSE}
+library(usdeaths)
+
+# 1. Pick a layout for the year you want
+meta <- data_mortality_multiple_2020
+
+# 2. Inspect it — see what fields are available
+meta$name
+head(meta)
+
+# 3. Read the raw fixed-width file
+df <- read_section(
+  data_file = "path/to/Mort2020US.PubUse.zip",
+  meta      = meta
+)
+
+# 4. Decode coded columns into labels
+df$sex_label <- decode_column(
+  x         = df$sex,
+  codes_str = meta$codes[meta$name == "sex"]
+)
+
+# 5. Preview all coded columns at once
+decode_preview(df, meta, sex, race_recode_40, manner_of_death)
+```
+
+### Finding download URLs
+
+The `cdc_link_lookup` table provides direct download URLs scraped from the CDC
+Vital Statistics Online page, so you don't have to hunt through the CDC website
+manually:
+
+```{r lookup-example, eval=FALSE}
+library(dplyr)
+
+# See what sections are available
+cdc_link_lookup |> distinct(section)
+
+# Get download links for a specific section and year range
+cdc_link_lookup |>
+  filter(section == "Mortality Multiple Cause", year >= 2015) |>
+  select(year, us_data_url, us_data_size_mb)
+```
+
+---
+
+## Dataset Families at a Glance
+
+```{r glance, echo=FALSE}
+glance <- data.frame(
+  `Dataset family`    = c("Mortality Multiple Cause", "Birth Cohort Linked", "Natality (Births)", "Fetal Death"),
+  `Object prefix`     = c("data_mortality_multiple_", "data_birth_cohort_", "data_births_", "data_fetal_death_"),
+  `Intended coverage` = c("1968–2024", "1983–2024", "1968–2024", "1982–2024"),
+  `One record per`    = c("Death", "Birth (infant deaths linked)", "Live birth", "Fetal death"),
+  check.names = FALSE
+)
+kable(glance, caption = "Dataset families in usdeaths")
+```
+
+Layout objects are being added incrementally across all families. See the
+package NEWS or changelog for which years are currently implemented.
+
+---
+
+## 1. Mortality Multiple Cause
+
+**Object prefix:** `data_mortality_multiple_YYYY`  
+**Source:** NCHS Division of Vital Statistics  
+**CDC page:** <https://www.cdc.gov/nchs/data_access/VitalStatsOnline.htm> → *Mortality Multiple Cause*  
+**Intended coverage:** 1968–2024 (57 years)
+
+Each annual file contains one record per death registered in the United States.
+Fields cover the decedent's demographics (age, sex, race, education, marital
+status, place of birth), geography (state and county of residence and occurrence
+— on public-use files through 2004 only), the underlying cause of death as an
+ICD code, up to 20 entity-axis and 20 record-axis multiple cause conditions, and
+administrative fields such as manner of death, autopsy, and method of
+disposition.
+
+### Layout eras
+
+```{r mortality-eras, echo=FALSE}
+mort_tbl <- data.frame(
+  Era              = c("1968–1987", "2003–2004", "2005–2016", "2017–2019", "2020", "2021–2024"),
+  `Geo detail`     = c("Yes", "Yes", "No", "No", "No", "No"),
+  Education        = c("1989 only", "Both revisions", "Both revisions", "Both revisions", "Both revisions", "2003 only"),
+  `Occ/Industry`   = c("No", "No", "No", "No", "Yes (46 states)", "Yes"),
+  `Race recode 40` = c("No", "No", "No", "No", "No", "Yes"),
+  Notable          = c(
+    "ICD-7/8/9 depending on year",
+    "Full geography; record_type at pos 19",
+    "Geography removed 2005+; record_type absent",
+    "Bridged-race only; simplified disposition codes",
+    "First COVID-19 (U07.1); occ/industry introduced",
+    "Bridged-race block removed; race_recode_40 sole summary"
+  ),
+  check.names = FALSE
+)
+kable(mort_tbl, caption = "Mortality Multiple Cause — layout eras")
+```
+
+### What you can do with this data
+
+```{r mortality-examples, eval=FALSE}
+library(usdeaths)
+library(dplyr)
+
+meta <- data_mortality_multiple_2020
+df   <- read_section("path/to/Mort2020US.PubUse.zip", meta)
+
+# --- Cause of death frequency table ---
+df |>
+  count(icd_code, sort = TRUE) |>
+  slice_head(n = 10)
+
+# --- Age distribution of deaths by manner ---
+df |>
+  mutate(
+    manner = decode_column(manner_of_death, meta$codes[meta$name == "manner_of_death"]),
+    age    = as.integer(detail_age)
+  ) |>
+  filter(manner == "Natural") |>
+  summarise(median_age = median(age, na.rm = TRUE))
+
+# --- COVID-19 deaths (2020+) ---
+df |>
+  filter(icd_code == "U071") |>
+  count(sex)
+
+# --- Multiple cause: how often does hypertension appear alongside heart disease ---
+# Entity-axis conditions are in condition_1 through condition_20
+df |>
+  filter(if_any(starts_with("condition_"), ~ grepl("^I1[0-9]", .))) |>
+  nrow()
+
+# --- Trend: deaths by month (using month_of_death) ---
+df |>
+  mutate(month = decode_column(month_of_death, meta$codes[meta$name == "month_of_death"])) |>
+  count(month)
+```
+
+---
+
+## 2. Birth Cohort Linked Birth / Infant Death
+
+**Object prefix:** `data_birth_cohort_YYYY`  
+**Source:** NCHS Division of Vital Statistics  
+**CDC page:** <https://www.cdc.gov/nchs/data_access/VitalStatsOnline.htm> → *Linked Birth / Infant Death*  
+**Intended coverage:** 1983–2024 (42 years)
+
+### What the linked file is
+
+The birth cohort linked file follows all infants **born in a given year** and
+records any deaths that occur before their first birthday, whether in the birth
+year or the following year. This is different from the *period* linked file,
+which captures all infant deaths occurring in a single calendar year regardless
+of birth year. Birth cohort files are generally preferred for multivariate
+analysis because they follow a true cohort.
+
+### Two files inside each ZIP
+
+Each annual release contains **two separate fixed-width data files** that share
+the same record layout:
+
+```{r two-files, echo=FALSE}
+two_files <- data.frame(
+  File = c("Denominator-plus file", "Numerator file"),
+  Contents = c(
+    "All births in the cohort year. For infants who died, selected death variables are appended: age at death, underlying cause, manner of death, autopsy, record weight. Covers positions 1–900.",
+    "Linked records only — births to infants who died before age 1. Contains all denominator-plus fields plus entity-axis and record-axis multiple cause conditions. Covers positions 1–1,259."
+  ),
+  `When to use` = c(
+    "When you only need a handful of death variables alongside birth certificate data",
+    "When you need multiple cause of death conditions or full death certificate detail"
+  ),
+  check.names = FALSE
+)
+kable(two_files, caption = "Two files within each birth cohort ZIP")
+```
+
+The `infant_death_number` field (positions 10–14) uniquely identifies the same
+infant across both files so they can be joined. The `match_status` field
+(position 868) indicates whether a record appears in both files.
+
+### Record weight
+
+Because some infant deaths cannot be linked to a birth certificate, a
+`record_weight` field (positions 893–900, format `1.XXXXXX`) is included in the
+numerator file to adjust for unlinked records within each state × age-at-death
+stratum. The denominator file is **not** weighted.
+
+### Certificate revisions
+
+The files span the transition from the **1989 U.S. Standard Certificate of Live
+Birth** (unrevised, code `U`) to the **2003 revision** (revised, code `R`).
+Because states adopted the 2003 revision on different schedules, both revised
+and unrevised fields coexist in the same record. The `version` field (position
+7) indicates which certificate applies to each record. Reporting flags
+(positions 569–771) indicate which states reported each item in the current and
+prior year, helping users filter to comparable reporting areas.
+
+### No U.S. geographic detail
+
+Consistent with the 2005+ NCHS data access policy, **no U.S. state or county
+identifiers** are present in the public-use files. Geographic fields are
+available only in the territory file (Guam, Puerto Rico, Virgin Islands).
+
+### Layout summary
+
+```{r cohort-years, echo=FALSE}
+cohort_tbl <- data.frame(
+  Year             = c(1983, 2008, 2009, 2010, 2011, 2012),
+  `Layout rows`    = c(NA, 384, 384, 381, 426, 426),
+  `Record length`  = c(NA, 1259, 1259, 1259, 1259, 1259),
+  `Key changes from prior year` = c(
+    "Early cohort file; limited fields",
+    "Baseline 2008+ layout established",
+    "Identical to 2008; birth/death year codes updated",
+    "Drops last-live-birth-date (pos 220–225) and LMP-day (pos 440–441)",
+    "Major restructuring: birth time (25–28), paternity (152), infections block (345–350), maternal morbidity (404–409), APGAR-10 (418–420), BMI/interval/weight/height block (524–568); reporting flags expand to 4-level codes",
+    "Identical to 2011; father's combined age unrevised (184–185) dropped to filler"
+  ),
+  check.names = FALSE
+)
+kable(cohort_tbl, caption = "Birth Cohort Linked — implemented layouts")
+```
+
+### What you can do with this data
+
+```{r cohort-examples, eval=FALSE}
+library(usdeaths)
+library(dplyr)
+
+meta  <- data_birth_cohort_2012
+
+# Read the denominator-plus file (all births, with death vars appended for those who died)
+denom <- read_section("path/to/VS12LKBC.USNUMPUB", meta)
+
+# Read the numerator file (linked deaths only, includes multiple cause conditions)
+numer <- read_section("path/to/VS12LKBC.USNUMPUB", meta)
+
+# --- Infant mortality rate by birth weight ---
+denom |>
+  mutate(
+    died      = !is.na(age_at_death_days),
+    bwt_group = decode_column(birthweight_recode_4,
+                              meta$codes[meta$name == "birthweight_recode_4"])
+  ) |>
+  group_by(bwt_group) |>
+  summarise(
+    births = n(),
+    deaths = sum(died, na.rm = TRUE),
+    imr    = deaths / births * 1000
+  )
+
+# --- Age at death distribution ---
+denom |>
+  filter(!is.na(age_at_death_days)) |>
+  mutate(
+    age_group = decode_column(infant_age_recode_5,
+                              meta$codes[meta$name == "infant_age_recode_5"])
+  ) |>
+  count(age_group)
+
+# --- Cause of death breakdown (numerator file) ---
+numer |>
+  count(icd_code, sort = TRUE) |>
+  slice_head(n = 10)
+
+# --- Join numerator and denominator on infant_death_number ---
+joined <- inner_join(
+  denom |> select(infant_death_number, birthweight_grams, gestation_detail_weeks),
+  numer |> select(infant_death_number, icd_code, age_at_death_days),
+  by = "infant_death_number"
+)
+
+# --- Breastfeeding rate (denominator-plus, 2003 revised records only) ---
+denom |>
+  filter(version == "R", f_breastfed == 1) |>
+  count(breastfed_at_discharge) |>
+  mutate(pct = n / sum(n) * 100)
+```
+
+---
+
+## 3. Natality (Births)
+
+**Object prefix:** `data_births_YYYY`  
+**Source:** NCHS Division of Vital Statistics  
+**CDC page:** <https://www.cdc.gov/nchs/data_access/VitalStatsOnline.htm> → *Natality*  
+**Intended coverage:** 1968–2024 (57 years)
+
+Each record represents a registered live birth in the United States. Fields
+cover maternal demographics (age, race, education, marital status, state of
+residence), paternal demographics, pregnancy history, prenatal care, risk
+factors, labor and delivery characteristics, and infant outcomes (birth weight,
+gestational age, APGAR scores, congenital anomalies).
+
+> **Note on early years (1968–1972):** CDC distributes these files in Microsoft
+> Publisher (`.pub`) format, which requires conversion via LibreOffice before
+> the fixed-width data can be read. Conversion takes approximately 10–20 minutes
+> per file. Pre-converted versions are available as a GitHub release — see the
+> package README for details.
+
+### Years implemented
+
+```{r births-years, echo=FALSE}
+births_tbl <- data.frame(
+  Era       = c("1968–1978", "2018–2024"),
+  Years     = c(
+    "1968, 1969, 1970, 1971, 1972, 1973, 1974, 1975, 1976, 1977, 1978",
+    "2018, 2019, 2020, 2021, 2022, 2023, 2024"
+  ),
+  Count     = c(11, 7),
+  Notable   = c(
+    "Early-format files; 1968–1972 distributed as .pub and require LibreOffice conversion",
+    "Modern 2003-revision certificate; revised education, race, and risk factor fields"
+  ),
+  check.names = FALSE
+)
+kable(births_tbl, caption = "Natality (Births) — implemented layouts")
+```
+
+### What you can do with this data
+
+```{r births-examples, eval=FALSE}
+library(usdeaths)
+library(dplyr)
+
+meta <- data_births_2022
+df   <- read_section("path/to/Nat2022US.zip", meta)
+
+# --- Birth rate by maternal age group ---
+df |>
+  mutate(age_group = decode_column(mother_age_recode_14,
+                                   meta$codes[meta$name == "mother_age_recode_14"])) |>
+  count(age_group)
+
+# --- Preterm birth rate (gestational age < 37 weeks) ---
+df |>
+  mutate(preterm = gestation_recode_3 == 1) |>
+  summarise(preterm_rate = mean(preterm, na.rm = TRUE) * 100)
+
+# --- C-section rate by payment source ---
+df |>
+  filter(f_payment_source == 1) |>  # reporting flag: both years
+  mutate(
+    csection = delivery_method_recode == 2,
+    payer    = decode_column(payment_recode,
+                             meta$codes[meta$name == "payment_recode"])
+  ) |>
+  group_by(payer) |>
+  summarise(csection_rate = mean(csection, na.rm = TRUE) * 100)
+
+# --- Low birthweight by maternal education ---
+df |>
+  filter(f_mother_education == 1) |>
+  mutate(
+    lbw   = birthweight_grams < 2500,
+    educ  = decode_column(mother_education_revised,
+                          meta$codes[meta$name == "mother_education_revised"])
+  ) |>
+  group_by(educ) |>
+  summarise(lbw_rate = mean(lbw, na.rm = TRUE) * 100)
+
+# --- Trend: compare preterm rates across years ---
+years <- 2018:2022
+preterm_trend <- purrr::map_dfr(years, function(yr) {
+  m  <- get(paste0("data_births_", yr))
+  df <- read_section(paste0("path/to/Nat", yr, "US.zip"), m)
+  df |>
+    summarise(year = yr,
+              preterm_rate = mean(gestation_recode_3 == 1, na.rm = TRUE) * 100)
+})
+```
+
+---
+
+## 4. Fetal Death
+
+**Object prefix:** `data_fetal_death_YYYY`  
+**Source:** NCHS Division of Vital Statistics  
+**CDC page:** <https://www.cdc.gov/nchs/data_access/VitalStatsOnline.htm> → *Fetal Deaths*  
+**Intended coverage:** 1982–2024 (43 years)
+
+Each record represents a registered fetal death (stillbirth) of 20 or more
+weeks gestation. Fields are structurally similar to natality but include
+fetal-death-specific items such as obstetric estimate of gestation at delivery,
+cause of fetal death (ICD-coded), and delivery characteristics.
+
+### What you can do with this data
+
+```{r fetal-examples, eval=FALSE}
+library(usdeaths)
+library(dplyr)
+
+meta <- data_fetal_death_2020
+df   <- read_section("path/to/FetalDeath2020US.zip", meta)
+
+# --- Fetal death rate by gestational age ---
+df |>
+  mutate(gest_group = decode_column(gestation_recode,
+                                    meta$codes[meta$name == "gestation_recode"])) |>
+  count(gest_group)
+
+# --- Cause of fetal death (ICD-coded) ---
+df |>
+  count(icd_code, sort = TRUE) |>
+  slice_head(n = 10)
+
+# --- Fetal deaths by delivery method ---
+df |>
+  mutate(method = decode_column(delivery_method_recode,
+                                meta$codes[meta$name == "delivery_method_recode"])) |>
+  count(method)
+
+# --- Maternal age distribution ---
+df |>
+  mutate(age_group = decode_column(mother_age_recode_9,
+                                   meta$codes[meta$name == "mother_age_recode_9"])) |>
+  count(age_group)
+```
